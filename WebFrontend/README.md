@@ -1,82 +1,66 @@
-# Lightweight React Template for KAVIA
+# Evently Web Frontend (React)
 
-This project provides a minimal React template with a clean, modern UI and minimal dependencies.
+Role-based SPA for attendees, organizers, and admins with authentication, event discovery, booking with seat selection, dashboards, admin tools, and notifications.
 
 ## Features
 
-- **Lightweight**: No heavy UI frameworks - uses only vanilla CSS and React
-- **Modern UI**: Clean, responsive design with KAVIA brand styling
-- **Fast**: Minimal dependencies for quick loading times
-- **Simple**: Easy to understand and modify
+- Authentication: register, login, logout, role switch (attendee/organizer/admin)
+- Event discovery: search and filter with responsive cards
+- Booking: real-time seat selection UI and booking flow (reservation -> booking)
+- Organizer: dashboard and venue management
+- Admin: dashboard, users, venues, events, notifications
+- Notifications Center: list and trigger notifications
+- Responsive, accessible UI with keyboard focus and ARIA where applicable
+- Environment-configurable API base URL
 
-## Getting Started
+## Quickstart
 
-In the project directory, you can run:
-
-### `npm start`
-
-Runs the app in development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
-
-### `npm test`
-
-Launches the test runner in interactive watch mode.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-## Customization
-
-### Colors
-
-The main brand colors are defined as CSS variables in `src/App.css`:
-
-```css
-:root {
-  --kavia-orange: #E87A41;
-  --kavia-dark: #1A1A1A;
-  --text-color: #ffffff;
-  --text-secondary: rgba(255, 255, 255, 0.7);
-  --border-color: rgba(255, 255, 255, 0.1);
-}
+1) Copy env and set API Gateway base URL:
+```
+cp .env.example .env
+# edit .env to set REACT_APP_API_BASE_URL (e.g., http://localhost:3001)
 ```
 
-### Components
+2) Install dependencies:
+```
+npm install
+```
 
-This template uses pure HTML/CSS components instead of a UI framework. You can find component styles in `src/App.css`. 
+3) Start development server:
+```
+npm start
+```
+Open http://localhost:3000
 
-Common components include:
-- Buttons (`.btn`, `.btn-large`)
-- Container (`.container`)
-- Navigation (`.navbar`)
-- Typography (`.title`, `.subtitle`, `.description`)
+## Environment variables
 
-## Learn More
+- REACT_APP_API_BASE_URL: Base URL of the API Gateway (required)
+- REACT_APP_SITE_URL: Optional site URL for redirects
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+## Project structure (key files)
 
-### Code Splitting
+- src/services/api.js: API client wrapper for User/Booking/Admin/Venue/Notification services
+- src/context/AuthContext.js: Auth state, token handling, role switching
+- src/components/Navbar.js: Navigation with role selector
+- src/components/ProtectedRoute.js: Route guard by role
+- src/pages/*: Feature pages for events, booking, organizer, admin, notifications
+- src/App.js: Routes and theme switch
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+## Notes on APIs
 
-### Analyzing the Bundle Size
+This frontend expects an API Gateway with routes compatible with the provided OpenAPI stubs in the repository. For demo, event lists use placeholder data while booking, venues, admin, and notifications integrate with respective service endpoints. Adjust src/services/api.js if your gateway prefixes differ.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+## Accessibility
 
-### Making a Progressive Web App
+- Labels on form controls
+- ARIA attributes for seat selection and alerts
+- Keyboard navigable buttons and controls
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+## Scripts
 
-### Advanced Configuration
+- npm start
+- npm test
+- npm run build
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+Note: The project auto-updates Browserslist data during installation to keep caniuse-lite current for consistent builds. If offline environments block this, you can remove the postinstall and run `npx update-browserslist-db@latest` manually when online.
 
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)

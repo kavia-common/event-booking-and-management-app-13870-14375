@@ -1,0 +1,19 @@
+.nav {
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 10px 16px; background: var(--bg-secondary, #f8f9fa); border-bottom: 1px solid var(--border-color, #e9ecef);
+}
+.brand { font-weight: 700; margin-right: 12px; text-decoration: none; color: inherit; }
+.nav-left, .nav-right { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+.nav-link { text-decoration: none; padding: 6px 8px; border-radius: 6px; color: inherit; }
+.nav-link.active { background: rgba(0,0,0,0.06); }
+.role-select { padding: 6px 8px; border-radius: 6px; border: 1px solid var(--border-color, #e9ecef); background: white; }
+.btn { padding: 6px 10px; border: none; border-radius: 6px; background: var(--button-bg, #007bff); color: var(--button-text, #fff); cursor: pointer; text-decoration: none; }
+.btn.small { font-size: 0.9rem; }
+.btn.outline { background: transparent; border: 1px solid #007bff; color: #007bff; }
+.btn.danger { background: #e55353; }
+.icon-link { text-decoration: none; font-size: 20px; }
+.sr-only { position: absolute; left: -10000px; top: auto; width: 1px; height: 1px; overflow: hidden; }
+@media (max-width: 768px) {
+  .nav { gap: 8px; }
+  .nav-left, .nav-right { gap: 8px; }
+}
